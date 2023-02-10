@@ -80,7 +80,10 @@ form {
   padding-bottom: 1.5rem;
 }
 
-
+.descriptions {
+  
+  font-size: 14px;
+}
 /*
   This rule implies that the H1 tag lives within another HTML tag
   It "inherits" some rules from the above
