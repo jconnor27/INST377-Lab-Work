@@ -1,12 +1,3 @@
-/* eslint-disable max-len */
-/*
-  Welcome to Javascript!
-
-  This file contains parts of a simple script to make your carousel work.
-  Please feel free to edit away - the main version of this with all the notes is safely stored elsewhere
-*/
-/* eslint-enable max-len */
-// set our first slide's position to "0", the opening position in an array
 let slidePosition = 0;
 
 // gather a reference to every slide we're using via the class name and querySelectorAll
@@ -41,13 +32,6 @@ function moveToPrevSlide() {
   } else {
     slidePosition -= 1;
   }
-  // add your code in here for when you click the "prev" button
-  /*
-    add an if statement here that checks
-    if you're already at the first index position for an array
-    and if so, sets your slidePosition to the last slide position in totalSlides
-    if not, set the slidePosition to the current position minus one
-  */
   updateSlidePosition();
 }
 
@@ -61,8 +45,6 @@ document.querySelector('.next') // Get the appropriate element (<button class="n
     moveToNextSlide(); // call the function above to handle this
   });
 
-// Paying close attention to the above queryselector, write one that fires
-// when you want a "prev" slide
 document.querySelector('.prev')
   .addEventListener('click', () => {
     console.log('clicked prev');
