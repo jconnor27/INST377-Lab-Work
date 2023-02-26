@@ -14,7 +14,7 @@ function updateSlidePosition() {
     slide.classList.remove('visible');
     slide.classList.add('hidden');
   });
-
+  slides[slidePosition].classList.remove('hidden');
   slides[slidePosition].classList.add('visible');
 }
 
@@ -28,7 +28,7 @@ function moveToNextSlide() {
 }
 function moveToPrevSlide() {
   if (slidePosition === 0) {
-    slidePosition = 3;
+    slidePosition = totalSlides - 1; /* This was previously a constant value of 3 */ 
   } else {
     slidePosition -= 1;
   }
