@@ -39,7 +39,7 @@ a {
   text-decoration: none;
 }
 
-h2 {
+h2, h3{
   margin:0;
   padding:0;
   padding-bottom:1.5rem;
@@ -55,7 +55,6 @@ form {
   - like this: <div class="wrapper">
   - note that the period vanishes there!
 */
-
 
 .wrapper {
   min-height: 100vh;
@@ -92,7 +91,7 @@ form {
   /* this will push other blocks out of the way */
 
   /* colors */
-  background-color: #ffe08a;
+  /*background-color: #ffe08a;*/
   color: #4a4a4a;
 
   /* shapes */
@@ -104,6 +103,9 @@ form {
 
   /* box-shadows are fancy */
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+  
+  /* Added by myself */
+  border: 4px dashed;
 }
 
 
@@ -117,7 +119,7 @@ form {
 */
 
 .box {
-  background-color: rgba(239, 239, 239, 0.40);
+  /*background-color: rgba(239, 239, 239, 0.40);*/
   border: 2px dashed;
   border-radius: 4px;
 
@@ -128,18 +130,30 @@ form {
 }
 
 .left_section {
-  background-color: rgba(0, 139, 139, 0.8);
+  /*background-color: rgba(0, 139, 139, 0.8);*/
   flex: 0 1 auto;
-  margin: 1rem;
+  margin: 0rem 1rem 1rem 1rem;
   padding: 1.5rem;
 }
 
 .right_section {
-  background-color: rgba(255, 224, 138, 0.7);
+  /*background-color: rgba(255, 224, 138, 0.7);*/
   flex: 1 2 auto;
-  margin: 1rem;
+  margin: 0rem 1rem 1rem 1rem;
   align-items: center;
-  max-width: 450px;
+  justify-content: center;
+  display: flex;
+  flex-flow: column;
+}
+
+.restaurant_list {
+  /*background-color: rgba(255, 224, 138, 0.7);*/
+  width: fit-content;
+  height: fit-content;
+  align-items: flex-start;
+  justify-content: flex-start;
+  display:flex;
+  flex-flow: column;
 }
 
 /*
@@ -151,13 +165,14 @@ form {
 .footer {
   flex-shrink: 0;
   padding: 1rem;
-  background-color: rgba(0, 139, 139, 0.8);
+  /*background-color: rgba(0, 139, 139, 0.8);*/
   font-size: 1.2rem;
   font-weight: 600;
+  border: 2px dashed;
 }
 
 .footer a {
-  color: rgba(255, 224, 138, 1);
+  /*color: rgba(255, 224, 138, 1);*/
   text-decoration: underline;
 }
 
@@ -302,5 +317,18 @@ form label {
     /* check it out by using your developer tools to shrink your screen-size */
     .container {
       background-color: rgba(204, 8, 162, 0.65);
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .right_section {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .restaurant_list {
+      align-items: center;
+      justify-content: center;
     }
 }
