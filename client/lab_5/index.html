@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>John Connor's Lab_4</title>
+    <title>John Connor's Lab_5</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -14,28 +14,36 @@
       <div class="container">
         <div class="left_section box">
           <h2>Form Inputs</h2>
-          <div class="box">
-            Restaurant Name
-            <form action="https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json">
-              <label for="resto"></label>
-              <input type="text" name="" id="resto" />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+          <form
+            action="https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+            class="box main_form"
+          >
+            <div>
+              <label for="resto">Restaurant Name</label>
+              <input type="text" id="resto" name="resto"/>
+            </div>
+            <button type="submit">Load Data</button>
+            <button type="filter">Filter Data</button>
+          </form>
         </div>
         <div class="right_section box">
           <h2>Local Restaurants</h2>
-          <div class="restaurant_list box">A list of restaurants from an API</div>
+          <div class="restaurant_list box">
+            A list of restaurants from an API
+          </div>
         </div>
       </div>
       <footer class="footer">
-          Jconnor27
-          <a href="http://github.com/jconnor27/"
+        Jconnor27
+        <a
+          href="http://github.com/jconnor27/"
           target="_blank"
           rel="noopener noreferrer"
-          >Github.Org/jconnor27</a>
+          >Github.Org/jconnor27</a
+        >
       </footer>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
 <!-- Bring in your successful HTML/CSS from the Flexbox lab -->
