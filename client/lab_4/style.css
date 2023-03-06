@@ -324,6 +324,9 @@ form label {
       justify-content: flex-start;
       align-items: center;
     }
+    .box {
+      width: 100%;
+    }
 
     .right_section {
       align-items: flex-start;
@@ -333,5 +336,7 @@ form label {
     .restaurant_list {
       align-items: center;
       justify-content: center;
+      align-self: center;
+      justify-self: center;
     }
 }
