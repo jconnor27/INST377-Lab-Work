@@ -323,9 +323,10 @@ form label {
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      
     }
     .box {
-      width: 100%;
+      width: flex;
     }
 
     .right_section {
