@@ -61,7 +61,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   });
 
   filterButton.addEventListener('click', (event) => {
-    console.log('clicked FilterButton');
+    console.log('clicked filterButton');
 
     const formData = new FormData(mainForm);
     const formProps = Object.fromEntries(formData);
