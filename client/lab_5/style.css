@@ -343,5 +343,6 @@
     under your HTML form and input field
  */
  .buttons {
+  display: flex;
   justify-content: center;
  }
