@@ -276,12 +276,12 @@
   .prev:focus,
   .next:focus {
     margin: 0;
-    /* Pick a good border colour and check out how it works with your buttons */
+    border-color: rgb(54, 6, 246);
   }
   
   .prev:hover,
   .next:hover {
-    /* Pick a good background colour for your hover pseudoclass */
+    background-color: rgb(0, 250, 25);
   }
   
   
@@ -342,3 +342,6 @@
     Add a flexbox class that will keep two buttons nicely styled next to one another
     under your HTML form and input field
  */
+ .buttons {
+  justify-content: center;
+ }
