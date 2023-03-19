@@ -34,34 +34,36 @@ function filterList(list, query) {
   */
 }
 
+function cutRestaurantList(list){
+  console.log('fired cut list');
+  const range = [...Array(15).keys()];
+  return newArray = range.map((item) => {
+    const index = getRandomIntInclusive(0, list.length -1);
+    return list[index]
+  })
+}
+
 async function mainEvent() { // the async keyword means we can make API requests
   const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-  const filterButton = document.querySelector('.filter_button');
-  // Add a querySelector that targets your filter button here
+  const filterButton = document.querySelector('#filter_button');
+  const loadDataButton = document.querySelector('#data_load');
+  const generateListButton = document.querySelector('#generate');
+  
+  const loadAnimation = document.querySelector('#data_load_animation');
+  loadAnimation.style.display = 'none';
 
   let currentList = []; // this is "scoped" to the main event function
   
-  /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
-  mainForm.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
-    submitEvent.preventDefault();    // This prevents your page from becoming a list of 1000 records from the county, even if your form still has an action set on it    
-    console.log('form submission');     // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
-    /*
-      ## GET requests and Javascript
-        We would like to send our GET request so we can control what we do with the results
-        Let's get those form results before sending off our GET request using the Fetch API
-    
-      ## Retrieving information from an API
-        The Fetch API is relatively new,
-        and is much more convenient than previous data handling methods.
-        Here we make a basic GET request to the server using the Fetch method to the county
-    */
+  loadDataButton.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
+    console.log('Fired - Loading data');     // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
+    loadAnimation.style.display = 'inline-block';
 
     const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');     // Basic GET request - this replaces the form Action
     
-    // This changes the response from the GET into data we can use - an "object"
     currentList = await results.json();     
+    
+    loadAnimation.style.display = 'none';
     console.table(currentList); 
-    injectHTML(currentList);
   });
 
   filterButton.addEventListener('click', (event) => {
@@ -73,24 +75,19 @@ async function mainEvent() { // the async keyword means we can make API requests
     console.log(formProps);
     const newList = filterList(currentList, formProps.resto); 
 
+    // loging out the new list
     console.log(newList);
+    injectHTML(newList);
+
   })
-  /*
-    Now that you HAVE a list loaded, write an event listener set to your filter button
-    it should use the 'new FormData(target-form)' method to read the contents of your main form
-    and the Object.fromEntries() method to convert that data to an object we can work with
 
-    When you have the contents of the form, use the placeholder at line 7
-    to write a list filter
-
-    Fire it here and filter for the word "pizza"
-    you should get approximately 46 results
-  */
+  generateListButton.addEventListener('click', (event) => {
+    console.log('fired - generate new list');
+    const restaurantsList = cutRestaurantList(currentList);
+    injectHTML(restaurantsList);
+  })
+  
 }
 
-/*
-  This adds an event listener that fires our main event only once our page elements have loaded
-  The use of the async keyword means we can "await" events before continuing in our scripts
-  In this case, we load some data when the form has submitted
-*/
+
 document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
