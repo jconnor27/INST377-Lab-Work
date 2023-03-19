@@ -2,6 +2,21 @@
   Hook this script to index.html
   by adding `<script src="script.js">` just before your closing `</body>` tag
 */
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function injectHTML(list) {
+  console.log('fired injectHTML')
+  const target = document.querySelector('#restaurant_list');
+  target.innerHTML = '';
+  list.forEach((item) => {
+    const str = `<li>${item.name}</li>`;
+    target.innerHTML += str
+  })
+}
 
 /* A quick filter that will return something based on a matching input */
 function filterList(list, query) {
@@ -28,13 +43,8 @@ async function mainEvent() { // the async keyword means we can make API requests
   
   /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
   mainForm.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
-    
-    // This prevents your page from becoming a list of 1000 records from the county, even if your form still has an action set on it
-    submitEvent.preventDefault(); 
-    
-    // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
-    console.log('form submission'); 
-
+    submitEvent.preventDefault();    // This prevents your page from becoming a list of 1000 records from the county, even if your form still has an action set on it    
+    console.log('form submission');     // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
     /*
       ## GET requests and Javascript
         We would like to send our GET request so we can control what we do with the results
@@ -46,18 +56,12 @@ async function mainEvent() { // the async keyword means we can make API requests
         Here we make a basic GET request to the server using the Fetch method to the county
     */
 
-    // Basic GET request - this replaces the form Action
-    const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
-
+    const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');     // Basic GET request - this replaces the form Action
+    
     // This changes the response from the GET into data we can use - an "object"
-    currentList = await results.json();
-
-    /*
-      This array initially contains all 1,000 records from your request,
-      but it will only be defined _after_ the request resolves - any filtering on it before that
-      simply won't work.
-    */
+    currentList = await results.json();     
     console.table(currentList); 
+    injectHTML(currentList);
   });
 
   filterButton.addEventListener('click', (event) => {
