@@ -83,7 +83,7 @@ async function mainEvent() {
     const formProps = Object.fromEntries(formData);
 
     console.log(formProps);
-    const newList = filterList(currentList, formProps.resto);
+    const newList = filterList(storedList, formProps.resto);
 
     // loging out the new list
     console.log(newList);
@@ -99,7 +99,7 @@ async function mainEvent() {
 
   textField.addEventListener("input", (event) => {
     console.log("input", event.target.value);
-    const newList = filterList(currentList, event.target.value);
+    const newList = filterList(storedList, event.target.value);
     console.log(newList);
     injectHTML(newList);
   });
