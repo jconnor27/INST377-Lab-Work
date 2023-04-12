@@ -99,7 +99,7 @@ async function mainEvent() {
 
   textField.addEventListener("input", (event) => {
     console.log("input", event.target.value);
-    const newList = filterList(storedList, event.target.value);
+    const newList = filterList(currentList, event.target.value);
     console.log(newList);
     injectHTML(newList);
   });
