@@ -46,7 +46,7 @@ function cutRestaurantList(list) {
 async function mainEvent() {
   // the async keyword means we can make API requests
   const mainForm = document.querySelector(".main_form"); // This class name needs to be set on your form before you can listen for an event on it
-  const filterButton = document.querySelector("#filter_button");
+  // const filterButton = document.querySelector("#filter_button");
   const loadDataButton = document.querySelector("#data_load");
   const generateListButton = document.querySelector("#generate");
   const textField = document.querySelector("#resto");
@@ -55,7 +55,12 @@ async function mainEvent() {
   loadAnimation.style.display = "none";
   generateListButton.classList.add("hidden");
 
-  let storedList = [];
+  const storedData = localStorage.getItem('storedData');
+  const parsedData = JSON.parse(storedData);
+  if (parsedData.length > 0) {
+    generateListButton.classList.remove("hidden");
+  }
+
   let currentList = []; // this is "scoped" to the main event function
 
   loadDataButton.addEventListener("click", async (submitEvent) => {
@@ -67,15 +72,14 @@ async function mainEvent() {
       "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
     ); // Basic GET request - this replaces the form Action
 
-    storedList = await results.json();
-    if (storedList.length > 0) {
-      generateListButton.classList.remove("hidden");
-    }
+    const storedList = await results.json();
+    localStorage.setItem('storedData', JSON.stringify(storedList));
+    
 
     loadAnimation.style.display = "none";
     console.table(storedList);
   });
-
+/*
   filterButton.addEventListener("click", (event) => {
     console.log("clicked filterButton");
 
@@ -89,10 +93,12 @@ async function mainEvent() {
     console.log(newList);
     injectHTML(newList);
   });
-
+*/
   generateListButton.addEventListener("click", (event) => {
     console.log("fired - generate new list");
-    currentList = cutRestaurantList(storedList);
+    
+    
+    currentList = cutRestaurantList(parsedData);
     console.log(currentList);
     injectHTML(currentList);
   });
