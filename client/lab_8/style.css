@@ -120,6 +120,13 @@
     And will be what displays in your client
   */
   
+  #map {
+    width: 400px;
+    height: 380px;
+    margin-bottom: 1rem;
+  }
+
+
   .box {
     background-color: rgba(255, 166, 0, 0.8);
     border: 2px dashed;
