@@ -120,6 +120,14 @@ function getRandomIntInclusive(min, max) {
       console.log(currentList);
       injectHTML(currentList);
       markerPlace(currentList, carto);
+      
+      const topOfListCoordinatesRaw = currentList[0].geocoded_column_1.coordinates;
+      const topOfListCoordinates = [topOfListCoordinatesRaw[1], topOfListCoordinatesRaw[0]];
+      carto.flyTo(topOfListCoordinates, 13);
+
+      /*console.log("debugging here");
+      console.log("currentList[0].geocoded_column_1.coordinates = " + currentList[0].geocoded_column_1.coordinates);
+*/
     });
   
     textField.addEventListener("input", (event) => {
